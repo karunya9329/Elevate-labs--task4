@@ -1,0 +1,56 @@
+public class CalculatorApp {
+
+    public static int add(int a, int b) {
+        return a + b;
+    }
+
+    public static double add(double a, double b) {
+        return a + b;
+    }
+
+    public static int subtract(int a, int b) {
+        return a - b;
+    }
+
+    public static int multiply(int a, int b) {
+        return a * b;
+    }
+
+    public static double divide(int a, int b) {
+        checkDivideByZero(b);  // 3. Reusable utility method
+        return (double) a / b; // 4. Effective return value
+    }
+
+    private static void checkDivideByZero(int divisor) {
+        if (divisor == 0) {
+            throw new ArithmeticException("Error: Division by zero is not allowed.");
+        }
+    }
+
+    public static void changeValue(int number) {
+        number = number + 50; // This will not affect the original value
+    }
+
+
+    public static void main(String[] args) {
+
+        // Testing arithmetic operations
+        System.out.println("Addition (int): " + add(10, 5));
+        System.out.println("Addition (double): " + add(10.5, 5.2));
+        System.out.println("Subtraction: " + subtract(20, 8));
+        System.out.println("Multiplication: " + multiply(4, 6));
+
+        // Testing division with exception handling
+        try {
+            System.out.println("Division: " + divide(20, 4));
+            System.out.println("Division: " + divide(10, 0)); // Exception case
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
+        }
+
+        // Testing pass-by-value behavior
+        int originalNumber = 100;
+        changeValue(originalNumber);
+        System.out.println("Original number after method call: " + originalNumber);
+    }
+}
